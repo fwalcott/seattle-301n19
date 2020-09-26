@@ -36,12 +36,12 @@ function displayPics(){
     }
   }
   console.log(rando);
-  // TODO: In a sentence or two, explain why the previous line of code threw an error when we changed the variable declaration from `var to `let`.
+  // TODO: In a sentence or two, explain why the previous line of code threw an error when we changed the variable declaration from `var to `const`.
   // PUT YOUR RESPONSE IN THIS COMMENT
   console.log(viewed);
 
-  for (let i = 0; i < 3; i++){
-    let temp = viewed.shift();
+  for (const i = 0; i < 3; i++){
+    const temp = viewed.shift();
     pics[i].src = allProducts[temp].path;
     pics[i].id = allProducts[temp].name;
     allProducts[temp].views += 1;
@@ -50,7 +50,7 @@ function displayPics(){
 
 function handleClick(event) {
   if (event.target.id === 'image_container') {
-    return alert('Be sure to click directly on an image!!');
+    return alert(`Be sure to click directly on an image!!`);
   }
   totalClicks += 1;
   if(totalClicks > 24) {
@@ -59,10 +59,10 @@ function handleClick(event) {
     showList();
     makeChart();
   }
-  for(let i = 0; i < names.length; i++){
+  for(const i = 0; i < names.length; i++){
     if(event.target.id === allProducts[i].name) {
       allProducts[i].votes += 1;
-      console.log(event.target.id + ' has ' + allProducts[i].votes + ' votes in ' + allProducts[i].views + ' views');
+      console.log($event.target.id + ` has`  + $allProducts[i].votes +  `votes in`  + $allProducts[i].views + `views`);
     }
   }
   localStorage.busmall = JSON.stringify(allProducts);
@@ -71,10 +71,10 @@ function handleClick(event) {
 }
 
 function showList() {
-  for(let i = 0; i < allProducts.length; i++) {
-    let liEl = document.createElement('li');
-    liEl.textContent = allProducts[i].name + ' has ' + allProducts[i].votes + ' votes in ' + allProducts[i].views + ' views';
-    list.appendChild(liEl);
+  for(const i = 0; i < allProducts.length; i++) {
+    const liEl = document.createElement('li');
+    liEl.textContent = $allProducts[i].name + ` has ` + $allProducts[i].votes + `votes in` + $allProducts[i].views + `views`;
+    $list.appendChild(liEl);
   }
 }
 
@@ -88,7 +88,7 @@ function makeChartData(){
 
 function makeChart(){
   makeChartData();
-  let ctx = document.getElementById('chartypants').getContext('2d');
+  const ctx = document.getElementById('chartypants').getContext('2d');
   new Chart(ctx, { //eslint-disable-line
     type: 'bar',
     data: {
@@ -130,7 +130,7 @@ if(localStorage.busmall){
   console.log('There is no local storage data; initialize app by creating instances');
   for(var i = 0; i < names.length; i++) {
     new Product(names[i]);
-  }
+  } 
 }
 
 displayPics();
