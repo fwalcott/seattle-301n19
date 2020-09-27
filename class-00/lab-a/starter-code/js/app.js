@@ -88,7 +88,7 @@ function makeChartData(){
 
 function makeChart(){
   makeChartData();
-  const ctx = document.getElementById('chartypants').getContext('2d');
+  let ctx = document.getElementById('chartypants').getContext('2d');
   new Chart(ctx, { //eslint-disable-line
     type: 'bar',
     data: {
